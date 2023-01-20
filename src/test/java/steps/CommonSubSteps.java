@@ -7,7 +7,6 @@ import net.serenitybdd.rest.SerenityRest;
 import net.thucydides.core.annotations.Step;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.hamcrest.Matchers;
-
 import java.util.HashMap;
 
 public class CommonSubSteps {

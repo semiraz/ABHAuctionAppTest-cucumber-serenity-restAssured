@@ -26,7 +26,6 @@ public class Address {
     public String getCountry() {
         return country;
     }
-
     Address(AddressBuilder builder) {
         this.street = builder.street;
         this.city = builder.city;

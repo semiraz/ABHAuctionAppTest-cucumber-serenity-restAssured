@@ -77,4 +77,5 @@ public class AuctionStep {
     public void userIsLoggedOut() {
         registrationSubStep.getLogOut();
     }
+
 }

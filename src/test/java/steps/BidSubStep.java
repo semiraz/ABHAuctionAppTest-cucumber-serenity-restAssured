@@ -11,7 +11,6 @@ import java.util.HashMap;
 
 @RunWith(SerenityRunner.class)
 public class BidSubStep {
-
     @Steps
     CommonSubSteps common;
     @Steps

@@ -9,7 +9,6 @@ import net.thucydides.core.annotations.Step;
 import net.thucydides.core.annotations.Steps;
 import org.junit.Assert;
 import org.junit.runner.RunWith;
-
 import java.util.HashMap;
 import java.util.Map;
 

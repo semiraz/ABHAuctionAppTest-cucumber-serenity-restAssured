@@ -50,7 +50,6 @@ public class User {
         this.card = builder.card;
         this.userId = builder.userId;
     }
-
     public static class UserBuilder{
         private String firstName;
         private String lastName;

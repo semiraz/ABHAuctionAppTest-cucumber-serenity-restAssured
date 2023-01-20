@@ -86,7 +86,6 @@ public class SellerSubStep {
         productName = js.getString("name");
         Assert.assertEquals(200, common.getStatusCode());
     }
-
     @Step("Get Id of Newly Created Product")
     public String getIdOfProduct() {
         return SerenityRest.lastResponse().jsonPath().getString("id");

@@ -16,7 +16,6 @@ public class BidDetails {
     public String getUserId() {
         return userId;
     }
-
     BidDetails (BidDetailsBuilder builder) {
         this.price = builder.price;
         this.productId = builder.productId;

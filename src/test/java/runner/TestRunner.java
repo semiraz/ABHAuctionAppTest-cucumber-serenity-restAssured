@@ -10,5 +10,4 @@ import org.junit.runner.RunWith;
         features = "src/test/java/resources/features",
         glue = "steps"
 )
-public class TestRunner {
-}
+public class TestRunner {}

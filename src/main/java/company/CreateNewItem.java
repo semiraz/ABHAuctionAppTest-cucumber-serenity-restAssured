@@ -16,7 +16,6 @@ public class CreateNewItem {
         this.createProductRequest = builder.createProductRequest;
         this.createCreditCardRequest = builder.creditCardRequest;
     }
-
     public static class CreateNewItemBuilder{
         private CreateProductRequest createProductRequest;
         private CreateCreditCardRequest creditCardRequest;

@@ -54,7 +54,6 @@ public class CreateCreditCardRequest {
             this.verificationValue = verificationValue;
             return this;
         }
-
         public CreateCreditCardRequest build() {
             return  new CreateCreditCardRequest(this);
         }

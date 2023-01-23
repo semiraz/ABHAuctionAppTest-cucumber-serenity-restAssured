@@ -10,6 +10,10 @@ import io.cucumber.java.en.When;
 import net.serenitybdd.core.Serenity;
 import net.thucydides.core.annotations.Steps;
 import org.junit.Assert;
+import sub_steps.BidSubStep;
+import sub_steps.ItemSubStep;
+import sub_steps.RegistrationSubStep;
+import sub_steps.SellerSubStep;
 
 import java.util.List;
 
@@ -26,12 +30,12 @@ public class AuctionStep {
 
     @Given("^User has created an account with first name (.*) and last name (.*)$")
     public void userHasCreatedAnAccount(String firstName, String lastName) {
-        registrationSubStep.createNewUser(firstName, lastName);
+        registrationSubStep.createNewUserWithRandomEmailAndPassword(firstName, lastName);
     }
 
     @And("^Logged in with username and password$")
     public void loggedInWithUsernameAndPassword() {
-        registrationSubStep.login();
+        registrationSubStep.loginWithRandomEmailAndPassword();
         Serenity.setSessionVariable("token").to(registrationSubStep.getAccessToken());
         Serenity.setSessionVariable("userId").to(registrationSubStep.getUserId());
     }

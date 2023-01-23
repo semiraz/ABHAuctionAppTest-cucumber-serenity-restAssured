@@ -1,4 +1,4 @@
-package steps;
+package sub_steps;
 
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
@@ -34,6 +34,12 @@ public class CommonSubSteps {
         response.prettyPrint();
     }
 
+    @Step("Send Post Request")
+    public void sendPostRequestNoBody(String path, String token) {
+        response = SerenityRest.given().contentType(ContentType.JSON)
+                .header("Authorization", ("Bearer " + token)).log().all().when().post(path);
+        response.prettyPrint();
+    }
     @Step("Send Post Request With Token")
     public void sendPostRequestWithToken(Object object, String path, String token) {
         response = SerenityRest.given().contentType(ContentType.JSON).header("Authorization", ("Bearer " + token))
@@ -82,7 +88,7 @@ public class CommonSubSteps {
     @Step("Get Random Email-Username")
     public String generateRandomEmail(int length, String name, String lastName) {
         String allowedChars = "1234567890" + "_-.";
-        String email = "";
+        String email;
         String temp = RandomStringUtils.random(length, allowedChars);
         email = name + temp + lastName + "@gmail.com";
         return email;

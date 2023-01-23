@@ -1,4 +1,4 @@
-package steps;
+package sub_steps;
 
 import company.BidDetails;
 import io.restassured.path.json.JsonPath;

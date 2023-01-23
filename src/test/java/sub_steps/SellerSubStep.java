@@ -1,4 +1,4 @@
-package steps;
+package sub_steps;
 
 import company.*;
 import io.restassured.path.json.JsonPath;
@@ -8,6 +8,7 @@ import net.thucydides.core.annotations.Step;
 import net.thucydides.core.annotations.Steps;
 import org.junit.Assert;
 import org.junit.runner.RunWith;
+import sub_steps.CommonSubSteps;
 
 import java.util.ArrayList;
 import java.util.HashMap;

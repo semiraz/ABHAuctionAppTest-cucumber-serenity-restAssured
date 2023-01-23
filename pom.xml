@@ -121,9 +121,7 @@
                 <version>3.0.0-M7</version>
                 <configuration>
                     <includes>
-                        <!-- <include>**/testcases/Parameterization.java</include> -->
                         <include>**/runner/**/*.java</include>
-                        <!--            <include>**/testcases/CreateUserTest.java</include>-->
                     </includes>
                     <parallel>classes</parallel>
                     <threadCount>2</threadCount>

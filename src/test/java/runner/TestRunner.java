@@ -7,7 +7,8 @@ import org.junit.runner.RunWith;
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(
         plugin = {"pretty"},
-        features = "src/test/java/resources/features/login.feature",
+        features = "src/test/java/resources/features/",
         glue = "steps"
 )
 public class TestRunner {}
+//mvn clean verify -Dcucumber.filter.tags="@Regreesion"

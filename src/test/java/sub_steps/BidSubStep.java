@@ -18,14 +18,18 @@ public class BidSubStep {
     BidDetails bidDetails;
     JsonPath js;
 
-    @Step("Get Highest Bid For Item")
     private double getHighestBid(String itemName) {
-        String idProduct = itemSubStep.findWantedItemsId(itemName);
-        common.sendGetRequest("/api/v1/product/" + idProduct + "/bids/highest");
-        common.validateStatusCode(200);
+        common.sendGetRequest("/api/v1/products/" + itemSubStep.findWantedItemsId(itemName));
         js = common.rawToJson();
-        System.out.println("highest bid for product " + itemName + " is = " + common.getResponseBody());
-        return (double) common.getResponseBody();
+        if (js.getInt("bids.size()") == 0) {
+            return js.getDouble("startPrice");
+        } else {
+            String idProduct = itemSubStep.findWantedItemsId(itemName);
+            common.sendGetRequest("/api/v1/product/" + idProduct + "/bids/highest");
+            common.validateStatusCode(200);
+            js = common.rawToJson();
+            return (double) common.getResponseBody();
+        }
     }
 
     @Step("Place a Bid on the Item")
@@ -35,7 +39,6 @@ public class BidSubStep {
                 .setProductId(itemSubStep.findWantedItemsId(itemName)).setUserId(userId).build();
         common.sendPostRequestWithToken(bidDetails, "/api/v1/product/" + itemSubStep.findWantedItemsId(itemName) + "/bids", token);
         common.validateStatusCode(200);
-//        common.verifyResponseBodyDouble("price", highestBid);
     }
     @Step("Validate Message for the Highest Bid")
     public boolean validateMessage() {

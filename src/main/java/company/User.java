@@ -1,5 +1,7 @@
 package company;
 
+import com.thoughtworks.qdox.model.expression.Add;
+
 public class User {
     private String firstName;
     private String lastName;
@@ -9,8 +11,8 @@ public class User {
     private String phoneNumber;
     private String profileImageUrl;
     private String dateOfBirth;
-    private String address;
-    private String card;
+    private Address address;
+    private CreateCreditCardRequest card;
     private String userId;
 
     public String getUserId() {
@@ -59,8 +61,8 @@ public class User {
         private String phoneNumber;
         private String profileImageUrl;
         private String dateOfBirth;
-        private String address;
-        private String card;
+        private Address address;
+        private CreateCreditCardRequest card;
         private String userId;
 
         public UserBuilder setUserId(String userId) {
@@ -108,12 +110,12 @@ public class User {
             return this;
         }
 
-        public UserBuilder setAddress(String address) {
+        public UserBuilder setAddress(Address address) {
             this.address = address;
             return this;
         }
 
-        public UserBuilder setCard(String card) {
+        public UserBuilder setCard(CreateCreditCardRequest card) {
             this.card = card;
             return this;
         }

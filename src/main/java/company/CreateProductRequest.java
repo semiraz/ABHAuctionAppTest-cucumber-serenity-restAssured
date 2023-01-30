@@ -8,6 +8,7 @@ public class CreateProductRequest {
     private List<String> imagesUrls;
     private int startPrice;
     private String categoryId;
+    private String subcategoryId;
     private String creationDateTime;
     private String expirationDateTime;
     private String remainingTime;
@@ -32,6 +33,9 @@ public class CreateProductRequest {
 
     public String getCategoryId() {
         return categoryId;
+    }
+    public String getSubcategoryId() {
+        return subcategoryId;
     }
 
     public String getCreationDateTime() {
@@ -64,6 +68,7 @@ public class CreateProductRequest {
         this.imagesUrls = builder.imagesUrls;
         this.startPrice = builder.startPrice;
         this.categoryId = builder.categoryId;
+        this.subcategoryId = builder.subcategoryId;
         this.creationDateTime = builder.creationDateTime;
         this.expirationDateTime = builder.expirationDateTime;
         this.remainingTime = builder.remainingTime;
@@ -78,6 +83,7 @@ public class CreateProductRequest {
         private List<String> imagesUrls;
         private int startPrice;
         private String categoryId;
+        private String subcategoryId;
         private String creationDateTime;
         private String expirationDateTime;
         private String remainingTime;
@@ -109,7 +115,10 @@ public class CreateProductRequest {
             this.categoryId = categoryId;
             return this;
         }
-
+        public CreateProductRequestBuilder setSubcategoryId(String subcategoryId) {
+            this.subcategoryId = subcategoryId;
+            return this;
+        }
         public CreateProductRequestBuilder setCreationDateTime(String creationDateTime) {
             this.creationDateTime = creationDateTime;
             return this;

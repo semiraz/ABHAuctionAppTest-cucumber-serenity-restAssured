@@ -10,8 +10,7 @@ import net.thucydides.core.annotations.Steps;
 import org.junit.Assert;
 import org.junit.runner.RunWith;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @RunWith(SerenityRunner.class)
 public class RegistrationSubStep {
@@ -26,8 +25,8 @@ public class RegistrationSubStep {
     protected JsonPath js;
     protected String idUser;
 
-    @Step("Create a new user")
-    public void createNewUserWithRandomEmailAndPassword(String fName, String lName) {
+    @Step("Create new account")
+    public void createNewAccountWithRandomEmailAndPassword(String fName, String lName) {
         RestAssured.baseURI = "http://ec2-3-123-38-247.eu-central-1.compute.amazonaws.com:8080";
         emailRandom = common.generateRandomEmail(3, fName, lName);
         password =  common.randomPassword(2, 1, 2,3);
@@ -41,34 +40,44 @@ public class RegistrationSubStep {
         String first = js.get("firstName");
         String last = js.get("lastName");
         fullName= first.concat( " " + last);
-        Assert.assertEquals(200, common.getStatusCode());
         common.validateStatusCode(200);
     }
 
-    @Step("Create a new user")
-    public void createNewUserL(String fName, String lName, String email, String password) {
+    @Step("Create new account with name")
+    public void createNewAccountWithRandomEmailAndPassword(String fName, String lName, String emailUp) {
         RestAssured.baseURI = "http://ec2-3-123-38-247.eu-central-1.compute.amazonaws.com:8080";
 
         user = new User.UserBuilder().setFirstName(fName).setLastName(lName)
-                .setEmail(email).setPassword(password).setRole("1").build();
-        common.sendPostRequest(user, "/api/v1/auth/register");
-        Assert.assertEquals(200, common.getStatusCode());
-        common.validateStatusCode(200);
+                .setEmail(emailUp).setPassword("Pass123*").setRole("1").build();
+        if (!user.getEmail().equalsIgnoreCase(emailUp)) {
+            common.sendPostRequest(user, "/api/v1/auth/register");
+            js = common.rawToJson();
+            common.validateStatusCode(200);
+        }
     }
 
     @Step("Verify if new user is created")
-    public String verifyNewUserIsCreated() {
+    public boolean verifyNewUserIsCreated(String fullName) {
         String firstN = SerenityRest.lastResponse().jsonPath().getString("firstName");
         String lName = SerenityRest.lastResponse().jsonPath().getString("lastName");
-        System.out.println("fullName = " + firstN.concat( " " + lName));
-        return firstN.concat( " " + lName);
+        return fullName.equalsIgnoreCase(firstN.concat( " " + lName));
     }
 
     @Step("Login")
     public void login(String username, String password) {
+        RestAssured.baseURI = "http://ec2-3-123-38-247.eu-central-1.compute.amazonaws.com:8080";
         Map<String, String> loginUser = new HashMap<>();
         loginUser.put("username", username);
         loginUser.put("password", password);
+        common.sendPostRequest(loginUser, "/api/v1/auth/login");
+    }
+
+    @Step("Login")
+    public void loginWithValidPassword(String username) {
+        RestAssured.baseURI = "http://ec2-3-123-38-247.eu-central-1.compute.amazonaws.com:8080";
+        Map<String, String> loginUser = new HashMap<>();
+        loginUser.put("username", username);
+        loginUser.put("password", user.getPassword());
         common.sendPostRequest(loginUser, "/api/v1/auth/login");
     }
 
@@ -79,7 +88,6 @@ public class RegistrationSubStep {
 
     @Step("User is not Logged In")
     public void getStatusMessage(String statusMsg) {
-        //String status = SerenityRest.lastResponse().jsonPath().getString("status");
         common.verifyResponseBody("status", statusMsg);
     }
 
@@ -104,6 +112,10 @@ public class RegistrationSubStep {
     @Step("Get Token")
     public String getAccessToken() {
         return SerenityRest.lastResponse().jsonPath().getString("accessToken");
+    }
+    @Step("Get Email")
+    public String getEmail() {
+        return SerenityRest.lastResponse().jsonPath().getString("email");
     }
 
     @Step("Log Out")

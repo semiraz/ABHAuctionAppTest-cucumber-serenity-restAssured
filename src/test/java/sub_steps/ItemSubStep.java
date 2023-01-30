@@ -22,14 +22,14 @@ public class ItemSubStep {
 
     @Step("Find Wanted Item")
     public String findWantedItemsId(String itemName) {
-        common.sendGetRequest("/api/v1/products/");
+        common.sendGetRequest("/api/v1/products/search?criteria=new-arrivals");
         js = common.rawToJson();
         String findItem;
         String idProduct = "";
-        for (int i=0; i<js.getInt("size()"); i++) {
-            findItem = js.getString("[" +i+ "].name");
+        for (int i=0; i<js.getInt("content.size()"); i++) {
+            findItem = js.getString("content[" +i+ "].name");
             if (findItem.contains(itemName)) {
-                idProduct = js.getString("[" +i+ "].id");
+                idProduct = js.getString("content[" +i+ "].id");
                 break;
             }
         }
@@ -38,14 +38,14 @@ public class ItemSubStep {
 
     @Step("Find Wanted Item")
     public boolean findWantedItem(String itemName) {
-        common.sendGetRequest("/api/v1/products/");
+        common.sendGetRequest("/api/v1/products/search?criteria=new-arrivals");
         js = common.rawToJson();
         String findItem;
         String idProduct = "";
-        for (int i=0; i<js.getInt("size()"); i++) {
-            findItem = js.getString("[" +i+ "].name");
+        for (int i=0; i<js.getInt("content.size()"); i++) {
+            findItem = js.getString("content[" +i+ "].name");
             if (findItem.equalsIgnoreCase(itemName)) {
-                idProduct = js.getString("[" +i+ "].name");
+                idProduct = js.getString("content[" +i+ "].name");
                 break;
             }
         }
@@ -57,8 +57,8 @@ public class ItemSubStep {
     public String getItemName(String itemName) {
         js = common.rawToJson();
         String findItem;
-        for (int i=0; i<js.getInt("size()"); i++) {
-            findItem = js.getString("[" +i+ "].name");
+        for (int i=0; i<js.getInt("content.size()"); i++) {
+            findItem = js.getString("content[" +i+ "].name");
             if (findItem.equalsIgnoreCase(itemName)) {
                 itemName = findItem;
                 break;

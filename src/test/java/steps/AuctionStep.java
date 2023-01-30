@@ -28,26 +28,26 @@ public class AuctionStep {
     @Steps
     BidSubStep bidSubStep;
 
-    @Given("^User has created an account with first name (.*) and last name (.*)$")
+    @Given("^user has created an account with first name (.*) and last name (.*)$")
     public void userHasCreatedAnAccount(String firstName, String lastName) {
-        registrationSubStep.createNewUserWithRandomEmailAndPassword(firstName, lastName);
+        registrationSubStep.createNewAccountWithRandomEmailAndPassword(firstName, lastName);
     }
 
-    @And("^Logged in with username and password$")
+    @And("^a user logs in with username and password$")
     public void loggedInWithUsernameAndPassword() {
         registrationSubStep.loginWithRandomEmailAndPassword();
         Serenity.setSessionVariable("token").to(registrationSubStep.getAccessToken());
         Serenity.setSessionVariable("userId").to(registrationSubStep.getUserId());
     }
 
-    @When("^User add item (.*) to sell with photos, starting price and fill credit card and shipping form$")
+    @And("^user adds an item (.*) to sell with photos, starting price, credit card info and their address$")
     public void userAddItemToSellWithPhotosStartingPriceAndFillCreditCardAndShippingForm(String itemName) {
-        sellerSubStep.postCategory("Shorts", "Woman", Serenity.sessionVariableCalled("token").toString());
+        //sellerSubStep.postSubcategory("Shorts", "Woman", Serenity.sessionVariableCalled("token").toString());
         Address address = sellerSubStep.createAddress("SomeSt2", "Sarajevo", "71000", "State", "BiH");
         List<String> imagesUrl =sellerSubStep.addImages("https://images.app.goo.gl/jGhmwiFEiHWfHY1i9", "https://images.app.goo.gl/bt7mKCZGdQivVQkr7",
                 "https://images.app.goo.gl/SwRw5jpJCaLanrwT8");
         CreateProductRequest productRequest = sellerSubStep.createProductRequest(itemName, "bla bla", imagesUrl,
-                20, "2023-01-18T14:18:06.448Z", "2023-01-21T14:18:06.448Z",
+                20, "2023-01-18T14:18:06.448Z", "2023-02-27T14:18:06.448Z",
                 "Woman", address, Serenity.sessionVariableCalled("userId").toString());
         CreateCreditCardRequest cardRequest = sellerSubStep.createCreditCardInfo("Bla blas", "1234567543218888",
                 "2025-01-17T14:18:06.448Z", "123");
@@ -55,29 +55,29 @@ public class AuctionStep {
         Serenity.setSessionVariable("productId").to(sellerSubStep.getIdOfProduct());
     }
 
-    @Then("^Item (.*) is successfully added and ready for auction$")
+    @And("^the item (.*) is successfully added and ready for auction$")
     public void itemIsSuccessfullyAddedAndReadyForAuction(String itemName) {
         itemSubStep.newItemIsCreated(Serenity.sessionVariableCalled("productId").toString(), itemName);
     }
 
-    @When("^User find wanted item (.*)$")
+    @When("^user finds (.*) item$")
     public void userFindWantedItem(String itemName) {
         Assert.assertTrue(itemSubStep.findWantedItem(itemName));
         Serenity.setSessionVariable("itemName").to(itemSubStep.getItemName(itemName));
     }
 
-    @And("^User place the highest bid on the item$")
+    @And("^user places the highest bid on the item$")
     public void userPlaceABidOnItem() {
         bidSubStep.placeABid(Serenity.sessionVariableCalled("itemName").toString(),  Serenity.sessionVariableCalled("token").toString(),
                 Serenity.sessionVariableCalled("userId").toString());
     }
 
-    @Then("^Notification with successfully placed highest bid is received$")
+    @Then("^user receives success notification$")
     public void notificationWithSuccessMessageIsReceived() {
         Assert.assertTrue(bidSubStep.validateMessage());
     }
 
-    @And("User is logged out")
+    @And("user is logged out")
     public void userIsLoggedOut() {
         registrationSubStep.getLogOut();
     }

@@ -8,7 +8,6 @@ import net.thucydides.core.annotations.Step;
 import net.thucydides.core.annotations.Steps;
 import org.junit.Assert;
 import org.junit.runner.RunWith;
-import sub_steps.CommonSubSteps;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,8 +39,8 @@ public class SellerSubStep {
         return categoryId;
     }
 
-    @Step("Post a category")
-    public void postCategory(String subCategoryName, String parentCategoryName, String token) {
+    @Step("Post a Subcategory")
+    public void postSubcategory(String subCategoryName, String parentCategoryName, String token) {
         HashMap<String, String> category = new HashMap<>();
         category.put("name", subCategoryName);
         category.put("parentCategoryId", getCategoryId(parentCategoryName));
@@ -74,6 +73,7 @@ public class SellerSubStep {
                                      String expirationDateTime, String parentCategoryName, Address address, String userId) {
         return new CreateProductRequest.CreateProductRequestBuilder().setName(nameOfProduct)
                 .setDescription(description).setImagesUrls(imagesUrl).setStartPrice(startPrice).setCategoryId(getCategoryId(parentCategoryName))
+                .setSubcategoryId(getCategoryId(parentCategoryName))
                 .setCreationDateTime(creationDateTime).setExpirationDateTime(expirationDateTime).setUserId(userId)
                 .setAddress(address).build();
     }

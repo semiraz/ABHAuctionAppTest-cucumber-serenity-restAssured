@@ -7,7 +7,11 @@ import net.serenitybdd.rest.SerenityRest;
 import net.thucydides.core.annotations.Step;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.hamcrest.Matchers;
+
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 
 public class CommonSubSteps {
     protected String upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -46,9 +50,10 @@ public class CommonSubSteps {
                 .body(object).log().all().when().post(path);
         response.prettyPrint();
     }
+
     @Step("Send Put Request")
-    public void sendPutRequest(Object object, String path) {
-        response = SerenityRest.given().contentType(ContentType.JSON)
+    public void sendPutRequest(Object object, String path, String token) {
+        response = SerenityRest.given().contentType(ContentType.JSON).header("Authorization", ("Bearer " + token))
                 .body(object).log().all().when().put(path);
         response.prettyPrint();
     }
@@ -103,4 +108,46 @@ public class CommonSubSteps {
         String n = RandomStringUtils.random(lengthNumber, number);
         return c.concat(u).concat(l).concat(n);
     }
+
+    @Step("Get First Name")
+    public String getFirstName() {
+        List<String> firstNames = Arrays.asList("Maki", "Kill", "Polika", "Jane", "Lana", "Maximilian", "Benjamin", "Andrea");
+        String nameF = "";
+        for (String name : firstNames) {
+            Collections.shuffle(firstNames);
+            nameF = name;
+        }
+        return nameF;
+    }
+
+    @Step("Get Last Name")
+    public String getLastName() {
+        List<String> lastNames = Arrays.asList("Minic", "Maximic", "Smith", "Miller", "Jones", "Flofia", "Anderson");
+        String last = "";
+        for (String name : lastNames) {
+            Collections.shuffle(lastNames);
+            last = name;
+        }
+        return last;
+    }
+    @Step("Get Image Urls")
+    public String getImageUrl() {
+        List<String> imageUrls = Arrays.asList("https://images.app.goo.gl/jGhmwiFEiHWfHY1i9", "https://images.app.goo.gl/bt7mKCZGdQivVQkr7",
+                "https://images.app.goo.gl/SwRw5jpJCaLanrwT8");
+        String image = "";
+        for (String name : imageUrls) {
+            Collections.shuffle(imageUrls);
+            image = name;
+        }
+        return image;
+    }
+
+    public String getRandomString(int length) {
+        return RandomStringUtils.randomAlphabetic(length);
+    }
+
+    public String getRandomNumbers(int length) {
+        return RandomStringUtils.random(length, "0123456789");
+    }
+
 }

@@ -44,8 +44,7 @@ public class AuctionStep {
     public void userAddItemToSellWithPhotosStartingPriceAndFillCreditCardAndShippingForm(String itemName) {
         //sellerSubStep.postSubcategory("Shorts", "Woman", Serenity.sessionVariableCalled("token").toString());
         Address address = sellerSubStep.createAddress("SomeSt2", "Sarajevo", "71000", "State", "BiH");
-        List<String> imagesUrl =sellerSubStep.addImages("https://images.app.goo.gl/jGhmwiFEiHWfHY1i9", "https://images.app.goo.gl/bt7mKCZGdQivVQkr7",
-                "https://images.app.goo.gl/SwRw5jpJCaLanrwT8");
+        List<String> imagesUrl =sellerSubStep.addImages(itemName);
         CreateProductRequest productRequest = sellerSubStep.createProductRequest(itemName, "bla bla", imagesUrl,
                 20, "2023-01-18T14:18:06.448Z", "2023-02-27T14:18:06.448Z",
                 "Woman", address, Serenity.sessionVariableCalled("userId").toString());

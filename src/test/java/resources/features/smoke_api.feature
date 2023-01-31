@@ -13,6 +13,6 @@ Feature: Smoke
     And user is logged out
 
     Examples:
-      | firstName | lastName | itemName  | itemToBid |
-      | Maja      | Mljekic  | Sweater   | Watch     |
-      | John      | Hipot    | Trousers | Ring      |
+      | firstName | lastName | itemName | itemToBid |
+      | Jake      | Polka    | Sweater  | Watch     |
+      | Wanda     | Smith    | Trousers | Ring      |

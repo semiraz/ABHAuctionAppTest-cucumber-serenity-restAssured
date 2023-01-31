@@ -53,6 +53,10 @@ public class RegistrationSubStep {
             common.sendPostRequest(user, "/api/v1/auth/register");
             js = common.rawToJson();
             common.validateStatusCode(200);
+        } else {
+            common.sendPostRequest(user, "/api/v1/auth/register");
+            js = common.rawToJson();
+            common.validateStatusCode(200);
         }
     }
 

@@ -10,6 +10,7 @@ import org.junit.Assert;
 import org.junit.runner.RunWith;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -60,13 +61,34 @@ public class SellerSubStep {
     }
 
     @Step("Add images of item")
-    public List<String> addImages(String image1, String image2, String image3) {
-        List<String> images = new ArrayList<>();
-        images.add(image1);
-        images.add(image2);
-        images.add(image3);
-        return images;
+    public List<String> addImages(String itemName) {
+        List<String> imagesSweater = new ArrayList<>();
+        imagesSweater.add("https://media.gq.com/photos/634056f71784f0443e13b2d6/master/pass/sweaters.jpg");
+        imagesSweater.add("https://media.gq.com/photos/632b3b6f25d02accbd22d3fd/master/pass/sweater.jpg");
+        imagesSweater.add("https://i.ebayimg.com/images/g/od8AAOSw2elh0bGr/s-l400.jpg");
+        Collections.shuffle(imagesSweater);
+
+        List<String> imagesTrousers = new ArrayList<>();
+        imagesTrousers.add("https://media.vogue.co.uk/photos/61f42bdf7f84078255af8cbc/2:3/w_2560%2Cc_limit/BW_British_Vogue_01_F10%2520copy.jpg");
+        imagesTrousers.add("https://d3qyxwmfroew4h.cloudfront.net/media/catalog/product/cache/395f014b994aafeff4bad31a82fa3a56/m/a/margaret-howell-women-aw22-online-look-1032x1333-036_1_.jpg");
+        imagesTrousers.add("https://b2c-media.maxmara.com/sys-master/m0/MM/2022/2/1786022606/002/s3details/1786022606002-x-catullo_thumbnail.jpg");
+        Collections.shuffle(imagesTrousers);
+
+        if (itemName.equalsIgnoreCase("Sweater")) {
+            return imagesSweater;
+        } else if (itemName.equalsIgnoreCase("Trousers")) {
+            return imagesTrousers;
+        }
+        return null;
     }
+//    @Step("Add images of item")
+//    public List<String> addImages(String image1, String image2, String image3) {
+//        List<String> images = new ArrayList<>();
+//        images.add(image1);
+//        images.add(image2);
+//        images.add(image3);
+//        return images;
+//    }
 
     @Step("Create Product Request")
     public CreateProductRequest createProductRequest(String nameOfProduct, String description, List<String> imagesUrl, int startPrice, String creationDateTime,

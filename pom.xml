@@ -122,10 +122,6 @@
                 <configuration>
                     <includes>
                         <include>**/runner/**/*.java</include>
-                        <include>**/runner/*.java</include>
-                        <include>**/Test*.java</include>
-                        <include>**/*/*</include>
-                        <include>**/*/*.java</include>
                     </includes>
                     <parallel>classes</parallel>
                     <threadCount>2</threadCount>

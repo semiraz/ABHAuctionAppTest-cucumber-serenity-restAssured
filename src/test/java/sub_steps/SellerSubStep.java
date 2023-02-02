@@ -81,14 +81,6 @@ public class SellerSubStep {
         }
         return null;
     }
-//    @Step("Add images of item")
-//    public List<String> addImages(String image1, String image2, String image3) {
-//        List<String> images = new ArrayList<>();
-//        images.add(image1);
-//        images.add(image2);
-//        images.add(image3);
-//        return images;
-//    }
 
     @Step("Create Product Request")
     public CreateProductRequest createProductRequest(String nameOfProduct, String description, List<String> imagesUrl, int startPrice, String creationDateTime,

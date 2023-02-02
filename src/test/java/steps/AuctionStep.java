@@ -43,13 +43,13 @@ public class AuctionStep {
     @And("^user adds an item (.*) to sell with photos, starting price, credit card info and their address$")
     public void userAddItemToSellWithPhotosStartingPriceAndFillCreditCardAndShippingForm(String itemName) {
         //sellerSubStep.postSubcategory("Shorts", "Woman", Serenity.sessionVariableCalled("token").toString());
-        Address address = sellerSubStep.createAddress("SomeSt2", "Sarajevo", "71000", "State", "BiH");
+        Address address = sellerSubStep.createAddress("My Street 43", "London", "345677", "State", "UK");
         List<String> imagesUrl =sellerSubStep.addImages(itemName);
-        CreateProductRequest productRequest = sellerSubStep.createProductRequest(itemName, "bla bla", imagesUrl,
-                20, "2023-01-18T14:18:06.448Z", "2023-02-27T14:18:06.448Z",
+        CreateProductRequest productRequest = sellerSubStep.createProductRequest(itemName, "description..", imagesUrl,
+                72, "2023-01-18T14:18:06.448Z", "2023-02-27T14:18:06.448Z",
                 "Woman", address, Serenity.sessionVariableCalled("userId").toString());
         CreateCreditCardRequest cardRequest = sellerSubStep.createCreditCardInfo("Bla blas", "1234567543218888",
-                "2025-01-17T14:18:06.448Z", "123");
+                "2025-01-17T14:18:06.448Z", "529");
         sellerSubStep.postProduct(productRequest, cardRequest, Serenity.sessionVariableCalled("token").toString());
         Serenity.setSessionVariable("productId").to(sellerSubStep.getIdOfProduct());
     }
@@ -78,7 +78,7 @@ public class AuctionStep {
 
     @And("user is logged out")
     public void userIsLoggedOut() {
-        registrationSubStep.getLogOut();
+        registrationSubStep.getLogOut(Serenity.sessionVariableCalled("token").toString());
     }
 
 }

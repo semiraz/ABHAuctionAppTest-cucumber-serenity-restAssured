@@ -119,8 +119,8 @@ public class RegistrationSubStep {
     }
 
     @Step("Log Out")
-    public void getLogOut() {
-        common.sendGetRequest("/api/v1/auth/logout");
+    public void getLogOut(String token) {
+        common.sendPostRequestNoBody("/api/v1/auth/logout", token);
         common.validateStatusCode(200);
     }
 

@@ -12,8 +12,6 @@
     <url>http://maven.apache.org</url>
 
     <properties>
-        <included.packages>-Dincluded.packages=*</included.packages>
-        <included.adapters>-Dincluded.adapters=coverage:complexity:dependency</included.adapters>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <serenity.version>3.5.1</serenity.version>
         <serenity.maven.version>3.5.1</serenity.maven.version>
@@ -124,11 +122,14 @@
                 <configuration>
                     <includes>
                         <include>**/runner/**/*.java</include>
+                        <include>**/runner/*.java</include>
+                        <include>**/Test*.java</include>
+                        <include>**/*/*</include>
+                        <include>**/*/*.java</include>
                     </includes>
                     <parallel>classes</parallel>
                     <threadCount>2</threadCount>
                     <forkCount>2C</forkCount>
-                    <argLine>-javaagent:serenity/serenity.jar -Xms512m -Xmx1024m ${included.packages} ${included.adapters}</argLine>
                 </configuration>
                 <executions>
                     <execution>

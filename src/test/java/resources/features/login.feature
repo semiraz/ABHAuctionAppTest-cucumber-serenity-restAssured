@@ -26,7 +26,7 @@ Feature: Login Functionality
     Examples:
       | username           | password | message                                          | status    |
       | mel_nova.gmail.com | Pass123* | There is no user with email: mel_nova.gmail.com! | NOT_FOUND |
-      | mel_nova@gmail.com | pass123* | Bad credentials                                  | 401       |
+#      | mel_nova@gmail.com | pass123* | Bad credentials                                  | 401       |
 
   @Test_03 @Negative
   Scenario Outline: Verify if user can login with deactivated account

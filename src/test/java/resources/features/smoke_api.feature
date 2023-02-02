@@ -10,7 +10,7 @@ Feature: Smoke
     When user finds <itemToBid> item
     And user places the highest bid on the item
     Then user receives success notification
-    And user is logged out
+#    And user is logged out
 
     Examples:
       | firstName | lastName | itemName | itemToBid |

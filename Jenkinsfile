@@ -15,7 +15,10 @@ pipeline {
                     }
                     post {
                         always {
-                            publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'target/site/serenity/', reportFiles: 'index.html', reportName: 'Serenity Report 1', reportTitles: 'Smoke API Test for Auction App', useWrapperFileDirectly: true])
+                            publishHTML target :
+                            [allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false,
+                            reportDir: 'target/site/serenity/', reportFiles: 'index.html', reportName: 'Serenity Report 1',
+                            reportTitles: 'Smoke API Test for Auction App', useWrapperFileDirectly: true]
 
                         }
                     }
@@ -28,7 +31,10 @@ pipeline {
                           // If Maven was able to run the tests, even if some of the test
                           // failed, record the test results and archive the jar file.
                           always {
-                              publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'target/site/serenity/', reportFiles: 'index.html', reportName: 'Serenity Report 2', reportTitles: 'Regression API Tests for Auction App', useWrapperFileDirectly: true])
+                              publishHTML target :
+                              ([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false,
+                              reportDir: 'target/site/serenity/', reportFiles: 'index.html', reportName: 'Serenity Report 2',
+                              reportTitles: 'Regression API Tests for Auction App', useWrapperFileDirectly: true])
                           }
                     }
                 }

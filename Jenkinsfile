@@ -14,8 +14,10 @@ pipeline {
                         sh 'mvn verify -Dcucumber.filter.tags="@Smoke"'
                     }
                     post {
-                        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'coverage', reportFiles: 'index.html', reportName: 'Serenity Report', reportTitles: 'Smoke API Test for Auction App', useWrapperFileDirectly: true])
+                        always {
+                            publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'coverage', reportFiles: 'index.html', reportName: 'Serenity Report 1', reportTitles: 'Smoke API Test for Auction App', useWrapperFileDirectly: true])
 
+                        }
                     }
                 }
                 stage('Run API Regression Tests') {
@@ -25,17 +27,13 @@ pipeline {
                     post {
                           // If Maven was able to run the tests, even if some of the test
                           // failed, record the test results and archive the jar file.
-                        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'coverage', reportFiles: 'index.html', reportName: 'Serenity Report', reportTitles: 'Regression API Tests for Auction App', useWrapperFileDirectly: true])
-
+                          always {
+                              publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'coverage', reportFiles: 'index.html', reportName: 'Serenity Report 2', reportTitles: 'Regression API Tests for Auction App', useWrapperFileDirectly: true])
+                          }
                     }
-                        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'coverage', reportFiles: 'index.html', reportName: 'Test T3 Report', reportTitles: 'Regression API Tests for Auction App', useWrapperFileDirectly: true])
-
                 }
-                    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'coverage', reportFiles: 'index.html', reportName: 'Test T1 Report', reportTitles: 'Regression API Tests for Auction App', useWrapperFileDirectly: true])
-
             }
         }
-        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'coverage', reportFiles: 'index.html', reportName: 'Test T2 Report', reportTitles: 'Regression API Tests for Auction App', useWrapperFileDirectly: true])
 
     }
 }

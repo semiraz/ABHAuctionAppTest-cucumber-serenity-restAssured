@@ -12,6 +12,8 @@ pipeline {
                     sh "mvn verify -Dcucumber.filter.tags='@Smoke'"
                 }
             }
+    }
+    stages {
             stage('Run API Regression Tests') {
                 steps {
                      sh "mvn verify -Dcucumber.filter.tags='@Regression'"
@@ -25,7 +27,7 @@ pipeline {
                                    alwaysLinkToLastBuild: false,
                                    keepAll: true,
                                    reportDir: 'target/site/serenity/',
-                                   reportFiles: 'capabilities.html',
+                                   reportFiles: 'index.html',
                                    reportName: 'Serenity Report',
                                    reportTitles: 'API Test for Auction App',
                                    useWrapperFileDirectly: true

@@ -25,7 +25,7 @@ pipeline {
                                    alwaysLinkToLastBuild: false,
                                    keepAll: true,
                                    reportDir: 'target/site/serenity/',
-                                   reportFiles: 'index.html',
+                                   reportFiles: 'capabilities.html',
                                    reportName: 'Serenity Report',
                                    reportTitles: 'API Test for Auction App',
                                    useWrapperFileDirectly: true

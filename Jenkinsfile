@@ -22,19 +22,19 @@ pipeline {
                      sh "mvn verify -Dcucumber.filter.tags='@Regression'"
                 }
             }
-            post {
-                always {
-                   publishHTML (target : [
-                                           allowMissing: false,
-                                           alwaysLinkToLastBuild: false,
-                                           keepAll: true,
-                                           reportDir: 'target/site/serenity/',
-                                           reportFiles: 'capabilities.html',
-                                           reportName: 'Serenity Report',
-                                           reportTitles: 'API Test for Auction App',
-                                           useWrapperFileDirectly: true
-                                           ])
-                }
-            }
+    }
+    post {
+        always {
+           publishHTML (target : [
+                                   allowMissing: false,
+                                   alwaysLinkToLastBuild: false,
+                                   keepAll: true,
+                                   reportDir: 'target/site/serenity/',
+                                   reportFiles: 'capabilities.html',
+                                   reportName: 'Serenity Report',
+                                   reportTitles: 'API Test for Auction App',
+                                   useWrapperFileDirectly: true
+                                   ])
+        }
     }
 }

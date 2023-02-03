@@ -5,19 +5,24 @@ pipeline {
         maven "maven"
     }
 
-
-    stage('Run API Smoke Test') {
-        steps {
-             // Run Maven on a Unix agent.
-            sh "mvn verify -Dcucumber.filter.tags='@Smoke'"
+    stages {
+        stage("API Testing") {
+            parallel {
+                stage('Run API Smoke Test') {
+                    steps {
+                         // Run Maven on a Unix agent.
+                        sh "mvn verify -Dcucumber.filter.tags='@Smoke'"
+                    }
+                }
+                stage('Run API Regression Tests') {
+                    steps {
+                         sh "mvn verify -Dcucumber.filter.tags='@Regression'"
+                    }
+                }
+            }
         }
-    }
-    stage('Run API Regression Tests') {
-        steps {
-             sh "mvn verify -Dcucumber.filter.tags='@Regression'"
-        }
-    }
 
+    }
     post {
         always {
            publishHTML (target : [

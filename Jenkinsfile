@@ -22,7 +22,7 @@ pipeline {
         always {
            publishHTML (target : [
                                    allowMissing: false,
-                                   alwaysLinkToLastBuild: true,
+                                   alwaysLinkToLastBuild: false,
                                    keepAll: true,
                                    reportDir: 'target/site/serenity/',
                                    reportFiles: 'index.html',

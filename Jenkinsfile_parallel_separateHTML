@@ -20,7 +20,7 @@ pipeline {
                                                    alwaysLinkToLastBuild: false,
                                                    keepAll: true,
                                                    reportDir: 'target/site/serenity/',
-                                                   reportFiles: 'capabilities.html',
+                                                   reportFiles: 'index.html',
                                                    reportName: 'Serenity Report Smoke',
                                                    reportTitles: 'Smoke API Test for Auction App',
                                                    useWrapperFileDirectly: true

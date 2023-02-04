@@ -11,39 +11,26 @@ pipeline {
                      // Run Maven on a Unix agent.
                     sh "mvn verify -Dcucumber.filter.tags='@Smoke'"
                 }
-                post {
-                    always {
-                         publishHTML target : [
-                               allowMissing: false,
-                               alwaysLinkToLastBuild: false,
-                               keepAll: true,
-                               reportDir: 'target/site/serenity/',
-                               reportFiles: 'index.html',
-                               reportName: 'Serenity Report Smoke',
-                               reportTitles: 'API Test for Auction App',
-                               useWrapperFileDirectly: true
-                               ]
-                    }
-                }
             }
             stage('Run API Regression Tests') {
                 steps {
                      sh "mvn verify -Dcucumber.filter.tags='@Regression'"
                 }
-                post {
-                    always {
-                         publishHTML target : [
-                               allowMissing: false,
-                               alwaysLinkToLastBuild: false,
-                               keepAll: true,
-                               reportDir: 'target/site/serenity/',
-                               reportFiles: 'capabilities.html',
-                               reportName: 'Serenity Report Regression',
-                               reportTitles: 'API Test for Auction App',
-                               useWrapperFileDirectly: true
-                               ]
-                    }
+            }
+            stage('Generate HTML report') {
+                steps {
+                    sh "mvn serenity:aggregate"
                 }
+                 publishHTML target : [
+                       allowMissing: false,
+                       alwaysLinkToLastBuild: false,
+                       keepAll: true,
+                       reportDir: 'target/site/serenity/',
+                       reportFiles: 'index.html',
+                       reportName: 'Serenity Report Regression',
+                       reportTitles: 'API Test for Auction App',
+                       useWrapperFileDirectly: true
+                       ]
             }
 
     }

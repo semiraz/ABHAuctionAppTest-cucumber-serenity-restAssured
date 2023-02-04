@@ -15,10 +15,10 @@ pipeline {
                     always {
                          publishHTML target : [
                                allowMissing: false,
-                               alwaysLinkToLastBuild: true,
+                               alwaysLinkToLastBuild: false,
                                keepAll: true,
                                reportDir: 'target/site/serenity/',
-                               reportFiles: 'index_smoke.html',
+                               reportFiles: 'index.html',
                                reportName: 'Serenity Report Smoke',
                                reportTitles: 'API Test for Auction App',
                                useWrapperFileDirectly: true
@@ -34,10 +34,10 @@ pipeline {
                     always {
                          publishHTML target : [
                                allowMissing: false,
-                               alwaysLinkToLastBuild: true,
+                               alwaysLinkToLastBuild: false,
                                keepAll: true,
                                reportDir: 'target/site/serenity/',
-                               reportFiles: 'index_regression.html',
+                               reportFiles: 'capabilities.html',
                                reportName: 'Serenity Report Regression',
                                reportTitles: 'API Test for Auction App',
                                useWrapperFileDirectly: true

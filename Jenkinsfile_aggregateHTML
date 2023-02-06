@@ -28,7 +28,7 @@ pipeline {
                     keepAll: true,
                     reportDir: 'target/site/serenity/',
                     reportFiles: 'index.html',
-                    reportName: 'Serenity Report Regression',
+                    reportName: 'Serenity Report',
                     reportTitles: 'API Test for Auction App',
                     useWrapperFileDirectly: true
                     ]

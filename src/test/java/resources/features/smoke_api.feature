@@ -14,5 +14,5 @@ Feature: Smoke
 
     Examples:
       | firstName | lastName | itemName | itemToBid |
-      | Jake      | Polka    | Sweater  | Watch     |
-      | Wanda     | Smith    | Trousers | Ring      |
+      | Jake      | Polka    | Sweater  | Bag     |
+      | Wanda     | Smith    | Trousers | Bag      |

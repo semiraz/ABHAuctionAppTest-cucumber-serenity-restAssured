@@ -21,15 +21,14 @@ public class BidSubStep {
     private double getHighestBid(String itemName) {
         common.sendGetRequest("/api/v1/products/" + itemSubStep.findWantedItemsId(itemName));
         js = common.rawToJson();
-        if (js.getInt("bids.size()") == 0) {
-            return js.getDouble("startPrice");
-        } else {
+//        if (js.getInt("size()") == 0) {
+//            return js.getDouble("startPrice");
+//        } else {
             String idProduct = itemSubStep.findWantedItemsId(itemName);
             common.sendGetRequest("/api/v1/product/" + idProduct + "/bids/highest");
             common.validateStatusCode(200);
             js = common.rawToJson();
             return (double) common.getResponseBody();
-        }
     }
 
     @Step("Place a Bid on the Item")

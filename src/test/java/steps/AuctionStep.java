@@ -46,7 +46,7 @@ public class AuctionStep {
         Address address = sellerSubStep.createAddress("My Street 43", "London", "345677", "State", "UK");
         List<String> imagesUrl =sellerSubStep.addImages(itemName);
         CreateProductRequest productRequest = sellerSubStep.createProductRequest(itemName, "description..", imagesUrl,
-                72, "2023-01-18T14:18:06.448Z", "2023-02-27T14:18:06.448Z",
+                72, "2023-02-27T14:18:06.448Z",
                 "Woman", address, Serenity.sessionVariableCalled("userId").toString());
         CreateCreditCardRequest cardRequest = sellerSubStep.createCreditCardInfo("Bla blas", "1234567543218888",
                 "2025-01-17T14:18:06.448Z", "529");

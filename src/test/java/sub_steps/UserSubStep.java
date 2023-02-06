@@ -46,14 +46,6 @@ public class UserSubStep {
     public void usersInfoAreUpdated(String userId, String info) {
         common.sendGetRequest("/api/v1/users/current/" + userId);
         common.validateStatusCode(200);
-//        if (info.equalsIgnoreCase("personal")) {
-//            System.out.println(updateUserRequest.getFirstName());
-//            common.verifyResponseBody("firstName", updateUserRequest.getFirstName());
-//        } else if(info.equalsIgnoreCase("address")) {
-//            common.verifyResponseBody("city", updateUserRequest.getAddress().getCity());
-//        } else if(info.equalsIgnoreCase("credit card")) {
-//            common.verifyResponseBody("holderFullName", updateCreditCardRequest.getHolderFullName());
-//        }
     }
 
     @Step("Get Users Info")

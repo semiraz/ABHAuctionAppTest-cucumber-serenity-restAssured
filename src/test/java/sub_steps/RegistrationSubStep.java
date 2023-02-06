@@ -27,7 +27,7 @@ public class RegistrationSubStep {
 
     @Step("Create new account")
     public void createNewAccountWithRandomEmailAndPassword(String fName, String lName) {
-        RestAssured.baseURI = "http://ec2-3-123-38-247.eu-central-1.compute.amazonaws.com:8080";
+        RestAssured.baseURI = "http://ec2-3-120-228-194.eu-central-1.compute.amazonaws.com:8080";
         emailRandom = common.generateRandomEmail(3, fName, lName);
         password =  common.randomPassword(2, 1, 2,3);
 
@@ -45,7 +45,7 @@ public class RegistrationSubStep {
 
     @Step("Create new account with name")
     public void createNewAccountWithRandomEmailAndPassword(String fName, String lName, String emailUp) {
-        RestAssured.baseURI = "http://ec2-3-123-38-247.eu-central-1.compute.amazonaws.com:8080";
+        RestAssured.baseURI = "http://ec2-3-120-228-194.eu-central-1.compute.amazonaws.com:8080";
 
         user = new User.UserBuilder().setFirstName(fName).setLastName(lName)
                 .setEmail(emailUp).setPassword("Pass123*").setRole("1").build();
@@ -65,7 +65,7 @@ public class RegistrationSubStep {
 
     @Step("Login")
     public void login(String username, String password) {
-        RestAssured.baseURI = "http://ec2-3-123-38-247.eu-central-1.compute.amazonaws.com:8080";
+        RestAssured.baseURI = "http://ec2-3-120-228-194.eu-central-1.compute.amazonaws.com:8080";
         Map<String, String> loginUser = new HashMap<>();
         loginUser.put("username", username);
         loginUser.put("password", password);
@@ -74,7 +74,7 @@ public class RegistrationSubStep {
 
     @Step("Login")
     public void loginWithValidPassword(String username) {
-        RestAssured.baseURI = "http://ec2-3-123-38-247.eu-central-1.compute.amazonaws.com:8080";
+        RestAssured.baseURI = "http://ec2-3-120-228-194.eu-central-1.compute.amazonaws.com:8080";
         Map<String, String> loginUser = new HashMap<>();
         loginUser.put("username", username);
         loginUser.put("password", user.getPassword());

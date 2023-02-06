@@ -30,7 +30,7 @@ public class AuctionRegressionStep {
 
     @Given("^new user (.*) has already created$")
     public void newUserHasAlreadyCreated(String fullName) {
-        userSubStep.getUsersInfo("b5f55b38-eb9d-4a47-9886-b1864ecd7eed");
+        userSubStep.getUsersInfo("361a2b57-b1eb-4ef7-b389-9e558d8b0e49");
     }
 
     @Given("^a user (.*) (.*) has created an account with (.*)$")

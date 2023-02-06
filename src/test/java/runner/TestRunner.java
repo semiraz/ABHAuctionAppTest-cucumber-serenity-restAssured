@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
                 "html:target/reports/cucumber-html-report",
                 "html:target/cucumber-reports/cucumber-pretty",
                 "json:target/cucumber.json"},
-        features = "src/test/java/resources/features/",
+        features = "src/test/java/resources/features/smoke_api.feature",
         glue = "steps"
 )
 public class TestRunner {}

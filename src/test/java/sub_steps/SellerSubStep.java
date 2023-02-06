@@ -9,6 +9,7 @@ import net.thucydides.core.annotations.Steps;
 import org.junit.Assert;
 import org.junit.runner.RunWith;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -83,12 +84,14 @@ public class SellerSubStep {
     }
 
     @Step("Create Product Request")
-    public CreateProductRequest createProductRequest(String nameOfProduct, String description, List<String> imagesUrl, int startPrice, String creationDateTime,
+    public CreateProductRequest createProductRequest(String nameOfProduct, String description, List<String> imageURLs, int startPrice,
                                      String expirationDateTime, String parentCategoryName, Address address, String userId) {
+        LocalDateTime now = LocalDateTime.now();
+        System.out.println("now date = " + now);
         return new CreateProductRequest.CreateProductRequestBuilder().setName(nameOfProduct)
-                .setDescription(description).setImagesUrls(imagesUrl).setStartPrice(startPrice).setCategoryId(getCategoryId(parentCategoryName))
+                .setDescription(description).setImageURLs(imageURLs).setStartPrice(startPrice).setCategoryId(getCategoryId(parentCategoryName))
                 .setSubcategoryId(getCategoryId(parentCategoryName))
-                .setCreationDateTime(creationDateTime).setExpirationDateTime(expirationDateTime).setUserId(userId)
+                .setCreationDateTime(String.valueOf(now)).setExpirationDateTime(expirationDateTime).setUserId(userId)
                 .setAddress(address).build();
     }
 

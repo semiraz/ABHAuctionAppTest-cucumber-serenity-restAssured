@@ -5,7 +5,7 @@ import java.util.List;
 public class CreateProductRequest {
     private String name;
     private String description;
-    private List<String> imagesUrls;
+    private List<String> imageURLs;
     private int startPrice;
     private String categoryId;
     private String subcategoryId;
@@ -23,8 +23,8 @@ public class CreateProductRequest {
         return description;
     }
 
-    public List<String> getImagesUrls() {
-        return imagesUrls;
+    public List<String> getImageURLs() {
+        return imageURLs;
     }
 
     public int getStartPrice() {
@@ -65,7 +65,7 @@ public class CreateProductRequest {
     CreateProductRequest(CreateProductRequestBuilder builder) {
         this.name = builder.name;
         this.description = builder.description;
-        this.imagesUrls = builder.imagesUrls;
+        this.imageURLs = builder.imageURLs;
         this.startPrice = builder.startPrice;
         this.categoryId = builder.categoryId;
         this.subcategoryId = builder.subcategoryId;
@@ -80,7 +80,7 @@ public class CreateProductRequest {
     public static class CreateProductRequestBuilder {
         private String name;
         private String description;
-        private List<String> imagesUrls;
+        private List<String> imageURLs;
         private int startPrice;
         private String categoryId;
         private String subcategoryId;
@@ -101,8 +101,8 @@ public class CreateProductRequest {
             return this;
         }
 
-        public CreateProductRequestBuilder setImagesUrls(List<String> imagesUrls) {
-            this.imagesUrls = imagesUrls;
+        public CreateProductRequestBuilder setImageURLs(List<String> imagesUrls) {
+            this.imageURLs = imagesUrls;
             return this;
         }
 
